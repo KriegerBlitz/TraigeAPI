@@ -6,8 +6,6 @@ from typing import List
 app = FastAPI(title="Clinical Triage API")
 DB_FILE = "triage.db"
 
-
-# 1. Initialize SQLite Database
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
@@ -41,8 +39,6 @@ def init_db():
 
 init_db()
 
-
-# 2. Define Data Models
 class PatientInput(BaseModel):
     name: str
     age: int
@@ -57,16 +53,12 @@ class PatientResponse(BaseModel):
     urgency_score: int
     notes: str
 
-
-# 3. Helper Logic: Deterministic Priority Calculation
 def calculate_urgency(age: int, pain_level: int) -> int:
     score = pain_level * 10
     if age > 65 or age < 5:
         score += 20
     return min(score, 100)
 
-
-# 4. Endpoints
 @app.post("/patients", response_model=PatientResponse, status_code=201)
 def create_patient(patient: PatientInput):
     urgency = calculate_urgency(patient.age, patient.pain_level)
