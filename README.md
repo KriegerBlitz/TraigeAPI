@@ -19,18 +19,18 @@ A lightweight RESTful API built with **FastAPI** and **SQLite** to manage patien
 ## Quickstart
 
 ### Local Setup
-\`\`\`bash
+```bash
 git clone https://github.com/<YOUR_USERNAME>/clinical-triage-api.git
 cd clinical-triage-api
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload
-\`\`\`
+```
 
 Open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in your browser to test endpoints via Swagger UI.
 
 ### Run Tests
-\`\`\`bash
+```bash
 pytest
-\`\`\`
+```
